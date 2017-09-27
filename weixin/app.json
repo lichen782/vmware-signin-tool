@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/ranking/ranking",
+    "pages/lecture/lecture"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "威睿大讲坛",
+    "navigationBarTextStyle": "black"
+  }
+}

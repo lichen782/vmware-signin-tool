@@ -1,0 +1,178 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0rpx;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.userinfo-brief {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0rpx;
+  margin-bottom: 10rpx;
+}
+
+.userinfo-signcount {
+  margin: 20rpx 5rpx 0rpx;
+  font-size: 18px;
+}
+
+.userinfo-order {
+  margin: 0rpx 5rpx;
+  font-size: 13px;
+  color: #A9A9A9;
+}
+
+.right {
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.clickable {
+  color: #87CEFA;
+}
+
+.medal {
+  margin-top: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.arrow {
+  color: #A9A9A9;
+  margin-top: 15rpx;
+  margin-left: 8rpx;
+  font-weight:bold;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.grey-container {
+  display: block;
+  flex-direction: column;
+  background-color: #F5F5F5;
+  align-items: center;
+}
+
+.btn-scanner {
+  display: block;
+  margin: 20rpx;
+  padding: 20rpx;
+  height: 80rpx;
+  line-height: 1;
+  border-radius: 10px;
+  background-color: #28A5DC;
+  color: #FFFFFF;
+  font-size: 18px;
+  text-align: center;
+}
+
+.btn-scanner text {
+  vertical-align:middle;
+  display: table-cell;
+}
+
+.my-recent {
+  font-size: 15px;
+  margin: 30rpx 0rpx 30rpx 10rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.lecture-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20rpx;
+  box-shadow: 0rpx 0rpx 20rpx 0rpx black;
+  border-radius: 15rpx;
+}
+
+.lecture-upper {
+    display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-content: flex-end;
+  height: 150rpx;
+    background: #aadb1e;
+    background: -moz-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -webkit-gradient(linear,left top,right top,color-stop(0,#aadb1e),color-stop(100%,#006a91));
+    background: -webkit-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -o-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -ms-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: linear-gradient(to right,#aadb1e 0,#006a91 100%);
+    background-image: linear-gradient(to right, rgb(170, 219, 30) 0px, rgb(0, 106, 145) 100%);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aadb1e',endColorstr='#006a91',GradientType=1);
+    width: 100%;
+    float: left;
+}
+
+.lecture-title {
+  font-size: 34rpx;
+  margin-left:15rpx;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.lecture-date {
+  margin-left:15rpx;
+  margin-top: 20rpx;
+  font-size: 20rpx;
+  color: white;
+}
+
+.lecture-tutor {
+  margin-left:15rpx;
+  font-size: 18rpx;
+  margin-bottom: 5rpx;
+  color: white;
+}
+
+.lecture-stats {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding-right: 10rpx;
+  align-items: flex-end;
+  font-size: 12px;
+  color: #A9A9A9;
+}
+
+.people {
+  margin-right: 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+}

@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="review-container">
+    <view class="lecture-detail">
+      <text class="teacher">Catherion Xu</text>
+      <text class="title">Presentation Skill</text>
+      <text class="date">2017-9-26 5:30 pm</text>
+      <text class="location">@FlyingDagger</text>
+    </view>
+    <view class="comment-container">
+      <view class="score-title">
+        <view class="line"/>
+        <text class="score-text">请评个分吧</text>
+        <view class="line"/>
+      </view>
+      <view class="comment-score">
+        <block wx:for="{{stars}}" wx:key="*this">
+          <view class="relative">
+            <image class="star-image" src="{{key > item ? (key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">  
+            </image>
+            <view class="star-item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"/>
+            <view class="star-item" style="left:50rpx" data-key="{{item+1}}" bindtap="selectRight"/> 
+          </view>
+        </block>
+      </view>
+      <view class="comment-input">
+          <textarea maxlength='800' class="textarea" placeholder="请给我提一些意见吧" />
+      </view>
+    </view>
+  </view>
+</view>
+<view class="submitorcancel">
+   <text bindtap="toHome" class="btn"style='background-color: #F7F7F7;'>返回</text>
+   <text bindtap="startRating" class="btn" style='background-color: #28A5DC;color:white'>提交</text>
+</view>
+
+

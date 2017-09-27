@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="grey-container">
+    <button class="btn-scanner" bindtap="btn_primary">扫码签到</button>
+  </view>
+  <view class="userinfo">
+    <view class="left">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <view class="userinfo-brief">
+        <text class="userinfo-signcount">累计签到0次</text>
+        <text class="userinfo-order">当前排名: 暂未上榜</text>
+      </view>
+    </view>
+    <view class="right">
+      <image class="medal" src="../images/allorder.jpg"/>
+      <text class="clickable" bindtap="goranking">排行榜</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+  <view class="grey-container">
+    <view class="my-recent">
+      <text>我最近的签到</text>
+    </view>
+  </view>
+  <view class="lecture-container" bindtap="onLectureDetail">
+    <view class="lecture-upper">
+      <text class='lecture-title'>Presentation Skill</text>
+      <text class='lecture-date'>2017-09-26 14:30</text>
+      <text class='lecture-tutor'>Miss Xu</text>
+    </view>
+    <view class="lecture-stats">
+      <text>0人</text>
+      <image src="../images/people.png" class="people"/>
+    </view>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{scanResult}}</text>
+  </view>
+</view>

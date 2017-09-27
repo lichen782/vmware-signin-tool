@@ -1,0 +1,165 @@
+/* pages/lecture.wxss */
+
+.review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 20rpx;
+}
+
+.lecture-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 20rpx;
+  background: #aadb1e;
+    background: -moz-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -webkit-gradient(linear,left top,right top,color-stop(0,#aadb1e),color-stop(100%,#006a91));
+    background: -webkit-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -o-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -ms-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: linear-gradient(to right,#aadb1e 0,#006a91 100%);
+    background-image: linear-gradient(to right, rgb(170, 219, 30) 0px, rgb(0, 106, 145) 100%);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aadb1e',endColorstr='#006a91',GradientType=1);
+    width: 100%;
+    float: left;
+    box-shadow: 0rpx 0rpx 20rpx 0rpx black;
+}
+
+.teacher {
+  color: white;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.title {
+  color: white;
+  font-size: 20px;
+}
+
+.date {
+  color: white;
+  font-size: 15px;
+}
+
+.location {
+  color: white;
+  font-size: 15px;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin: 20rpx;
+}
+
+.score-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.line {
+  border-width: 0 0 2rpx 0;
+  border-color: #A9A9A9;  
+  border-style: solid;
+  border-radius: 30%;
+  width: 200rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.score-text {
+  font-size: 15px;
+  color: #A9A9A9;
+}
+
+.comment-score {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+  align-content: center;
+  padding: 10rpx;
+}
+
+.relative {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+}
+
+.star-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 10rpx;
+}
+
+.star-item {
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  position: absolute;
+  padding: 10rpx;
+}
+
+.comment-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  margin: 20rpx;
+  border-width: 2rpx;
+  border-color: #A9A9A9;  
+  border-style: solid;
+}
+
+.textarea {
+  height: 300rpx;
+  width: 630rpx;
+}
+
+.submitorcancel {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: -5rpx;
+  justify-content: space-around;
+  align-content: stretch;
+  align-items: stretch;
+  margin: 0rpx;
+  padding: 0rpx;
+  width: 100%;
+  height: 100rpx;
+}
+
+.btn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center; 
+}

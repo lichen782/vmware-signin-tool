@@ -1,0 +1,131 @@
+/* pages/ranking.wxss */
+.rankinginfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border-width: 0 0 .5rpx 0;
+  border-color: #d7d9dd;  
+  border-style: solid;
+}
+
+.navigator-hover {
+  color: #C7C6C2
+}
+
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 10rpx;
+  background: #aadb1e;
+    background: -moz-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -webkit-gradient(linear,left top,right top,color-stop(0,#aadb1e),color-stop(100%,#006a91));
+    background: -webkit-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -o-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: -ms-linear-gradient(left,#aadb1e 0,#006a91 100%);
+    background: linear-gradient(to right,#aadb1e 0,#006a91 100%);
+    background-image: linear-gradient(to right, rgb(170, 219, 30) 0px, rgb(0, 106, 145) 100%);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aadb1e',endColorstr='#006a91',GradientType=1);
+    width: 95%;
+    float: left;
+}
+
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  height: 150rpx;
+}
+
+.banner-text {
+  font-size: 15px;
+  color: white;
+}
+
+.ranklist {
+  background-color: whitesmoke;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0rpx 0rpx 20rpx 0rpx black;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: 100%;
+  margin: 0rpx 10rpx 5rpx 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.line {
+  border-width: 0 0 8rpx 0;
+  border-color: #F09529;  
+  border-style: solid;
+  border-radius: 30%;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0rpx;
+  margin-left: 20rpx;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.userinfo-avatar-r {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 5rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  font-size: 13px;
+  color: #A9A9A9;
+  margin: 10rpx;
+}
+
+.userinfo-brief {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0rpx;
+  margin-bottom: 10rpx;
+  margin-right: 20rpx;
+}
+
+.userinfo-signcount {
+  margin: 20rpx 5rpx 0rpx;
+  font-size: 15px;
+  color: #A9A9A9;
+}
+
+.userinfo-order {
+  margin: 0rpx 10rpx 0rpx 0rpx;
+  font-size: 18px;
+}

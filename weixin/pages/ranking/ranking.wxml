@@ -1,0 +1,52 @@
+<!--pages/ranking.wxml-->
+<view class="container">
+  <view class="ranking-container">
+    <view class="banner">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="../images/head1.jpeg" background-size="cover"></image>
+        <text class="banner-text">大娃占据了封面</text>
+      </view>
+    </view>
+    <view class="ranklist">
+      <view class="rankinginfo" hover-class="navigator-hover">
+        <view class="userinfo">
+          <text class="userinfo-order">1</text>
+          <image class="userinfo-avatar-r" src="../images/head1.jpeg" background-size="cover"></image>
+        </view>
+        <view class="middle">
+          <text class="userinfo-nickname">大娃</text>
+          <view class="line" style="width:100%"></view>
+        </view>
+        <view class="userinfo-brief">
+            <text class="userinfo-signcount">10</text>
+        </view>
+      </view>
+      <view class="rankinginfo" hover-class="navigator-hover">
+        <view class="userinfo">
+          <text class="userinfo-order">2</text>
+          <image class="userinfo-avatar-r" src="../images/head2.jpeg" background-size="cover"></image>
+        </view>
+        <view class="middle">
+          <text class="userinfo-nickname">二娃</text>
+          <view class="line" style="width:70%"></view>
+        </view>
+        <view class="userinfo-brief">
+            <text class="userinfo-signcount">7</text>
+        </view>
+      </view>
+      <view class="rankinginfo" hover-class="navigator-hover">
+        <view class="userinfo">
+          <text class="userinfo-order">3</text>
+          <image class="userinfo-avatar-r" src="../images/head3.jpeg" background-size="cover"></image>
+        </view>
+        <view class="middle">
+          <text class="userinfo-nickname">三娃</text>
+          <view class="line" style="width:30%"></view>
+        </view>
+        <view class="userinfo-brief">
+            <text class="userinfo-signcount">3</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
