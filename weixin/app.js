@@ -1,10 +1,10 @@
 //app.js
+var utils = require('utils/util.js')
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
   },
   getUserInfo:function(cb){
     var that = this
@@ -13,15 +13,17 @@ App({
     }else{
       //调用登录接口
       wx.login({
-        success: function () {
+        success: function (loginRes) {
+          utils.onLogin(loginRes.code)
           wx.getUserInfo({
             success: function (res) {
-              console.log(res.userInfo)
+              console.log(res)
               that.globalData.userInfo = res.userInfo
           
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
+          //console.log("js code: " + loginRes.code)
         }
       })
     }
