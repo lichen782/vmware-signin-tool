@@ -1,10 +1,11 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.http import Http404
 import requests
 from rest_framework import mixins, generics
 from vst.apps import VstConfig
-from vst.models import Attendee
-from vst.serializers import AttendeeSerializer
+from vst.models import Attendee, Lecture
+from vst.serializers import AttendeeSerializer, LectureSerializer
 
 # Create your views here.
 
@@ -31,4 +32,21 @@ class AttendeeView(generics.UpdateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
 
+
+class AttendeeLectureListView(generics.ListAPIView):
+    serializer_class = LectureSerializer
+
+    def get_attendee(self, aid):
+        try:
+            attendee = Attendee.objects.get(id=aid)
+        except Attendee.DoesNotExist:
+            raise Http404
+        else:
+            return attendee
+
+    def get_queryset(self):
+        aid = self.kwargs['aid']
+        attendee = self.get_attendee(aid)
+        limit = self.request.query_params.get('limit', 3)
+        return attendee.lecture_set.order_by('-scheduled_date')[:limit]
 

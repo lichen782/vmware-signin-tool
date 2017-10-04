@@ -35,6 +35,13 @@ class Lecture(models.Model):
     attendees = models.ManyToManyField(Attendee)
     scan_code = models.CharField(max_length=1024)
 
+    class Meta:
+        ordering = ["scheduled_date"]
+
+    @property
+    def attendee_cnt(self):
+        return self.attendees.count()
+
     def __str__(self):
         return self.title
 
