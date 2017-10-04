@@ -1,7 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import requests
+from rest_framework import mixins, generics
 from vst.apps import VstConfig
+from vst.models import Attendee
+from vst.serializers import AttendeeSerializer
 
 # Create your views here.
 
@@ -16,9 +19,16 @@ def onlogin(request):
                                           'grant_type': 'authorization_code'})
     if openidResponse.status_code == 200:
         openid = openidResponse.json()['openid']
-        return JsonResponse({'openid': openid})
+        attendee, created = Attendee.objects.get_or_create(openid=openid)
+        return JsonResponse({'openid': openid, 'id': attendee.id})
     else:
         return JsonResponse({'message': 'failed to fetch openid'},
                             status=openidResponse.status_code)
+
+
+class AttendeeView(generics.UpdateAPIView):
+
+    queryset = Attendee.objects.all()
+    serializer_class = AttendeeSerializer
 
 

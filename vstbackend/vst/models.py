@@ -6,10 +6,21 @@ from datetime import datetime
 
 class Attendee(models.Model):
     openid = models.CharField(max_length=50)
-    nickname = models.CharField(max_length=50)
-    avatar_path = models.CharField(max_length=1024)
+    nickname = models.CharField(max_length=50, blank=True)
+    avatar_path = models.CharField(max_length=1024, blank=True)
+    avatar_url = models.CharField(max_length=1024, blank=True)
     attend_count = models.IntegerField(default=0)
     create_date = models.DateTimeField('date created', auto_now_add=True, blank=True)
+    update_date = models.DateTimeField('when the attendee is login/updated', auto_now=True)
+
+    @property
+    def on_top(self):
+        for c, a in enumerate(Attendee.objects.order_by('-attend_count')[:10]):
+            if a.id == self.id:
+                return c+1
+        else:
+            return -1
+
 
     def __str__(self):
         return ':'.join([self.openid, self.nickname])

@@ -14,16 +14,15 @@ App({
       //调用登录接口
       wx.login({
         success: function (loginRes) {
-          utils.onLogin(loginRes.code)
           wx.getUserInfo({
             success: function (res) {
               console.log(res)
               that.globalData.userInfo = res.userInfo
-          
+              that.globalData.userInfo.attendCount = 0
               typeof cb == "function" && cb(that.globalData.userInfo)
+              utils.onLogin(loginRes.code, cb)
             }
           })
-          //console.log("js code: " + loginRes.code)
         }
       })
     }

@@ -1,8 +1,7 @@
 
 var local = true
 var SETTINGS = { 
-  VST_URL: 'http://lich2kid.me:8000',
-  MY_OPENID: undefined
+  VST_URL: 'https://lich2kid.me:8000',
 }
 if(local == true) {
   SETTINGS.VST_URL = 'http://127.0.0.1:8000'
@@ -26,7 +25,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-function onLogin(jsCode) {
+function onLogin(jsCode, cb/*used to update page data*/) {
   wx.request({
     url: SETTINGS.VST_URL + '/vst/onlogin',
     header: {
@@ -36,12 +35,35 @@ function onLogin(jsCode) {
       js_code: jsCode
     },
     success: function (res) {
-      console.log("my openid: " + res.data.openid) //获取openid  
-      SETTINGS.MY_OPENID = res.data.openid
+      var app = getApp()
+      console.log("my openid: " + res.data.openid) //获取openid
+      console.log("my id: " + res.data.id) //获取 user id
+      app.globalData.userInfo.id = res.data.id
+      app.globalData.userInfo.openid = res.data.openid
+      updateUserInfo(app.globalData.userInfo, cb)
     }
   })
 }
 
+function updateUserInfo(userInfo, cb) {
+  wx.request({
+    url: SETTINGS.VST_URL + '/vst/attendee/' + userInfo.id + '/',
+    header: {
+      'content-type': 'application/json'
+    },
+    method: 'PUT',
+    data: {
+      nickname: userInfo.nickName,
+      avatar_url: userInfo.avatarUrl
+    },
+    success: function (res) { 
+      userInfo.attendCount = res.data.attend_count
+      userInfo.onTop = res.data.on_top
+      console.log(res.data)
+      typeof cb == "function" && cb(userInfo)
+    }
+  })
+}
 module.exports = {
   formatTime: formatTime,
   APP_SETTINGS: SETTINGS,

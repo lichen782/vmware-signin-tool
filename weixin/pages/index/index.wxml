@@ -7,8 +7,10 @@
     <view class="left">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <view class="userinfo-brief">
-        <text class="userinfo-signcount">累计签到0次</text>
-        <text class="userinfo-order">当前排名: 暂未上榜</text>
+        <text class="userinfo-signcount">累计签到{{userInfo.attendCount}}次</text>
+        <text class="userinfo-order">
+          当前排名: <block wx:if="{{userInfo.onTop > 0}}">{{userInfo.onTop}}</block><block wx:else>暂未上榜</block>
+        </text>
       </view>
     </view>
     <view class="right">

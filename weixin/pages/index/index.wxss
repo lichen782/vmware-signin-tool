@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10rpx 0rpx;
+  padding: 5rpx 0rpx;
 }
 
 .left {
@@ -23,19 +23,18 @@
 .userinfo-brief {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 0rpx;
+  justify-content: space-around;
   margin-bottom: 10rpx;
 }
 
 .userinfo-signcount {
-  margin: 20rpx 5rpx 0rpx;
+  margin: 20rpx 0rpx 0rpx;
   font-size: 18px;
 }
 
 .userinfo-order {
-  margin: 0rpx 5rpx;
-  font-size: 13px;
+  margin: 0rpx 0rpx;
+  font-size: 15px;
   color: #A9A9A9;
 }
 
