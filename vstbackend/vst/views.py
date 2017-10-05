@@ -1,8 +1,10 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
 import requests
-from rest_framework import mixins, generics
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from vst.apps import VstConfig
 from vst.models import Attendee, Lecture, Review
 from vst.serializers import AttendeeSerializer, LectureSerializer, ReviewSerializer
@@ -43,6 +45,31 @@ def onlogin(request):
         return JsonResponse({'message': 'failed to fetch openid'},
                             status=openidResponse.status_code)
 
+
+@csrf_exempt
+@api_view(['GET'])
+def onQRCodeScaned(request):
+    if request.method == 'GET':
+        qrCode = request.GET['code']
+        aid = request.GET['aid']
+        if not qrCode.startswith('VMW_TRAINING_'):
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+        try:
+            lecture = Lecture.objects.get(scan_code=qrCode)
+            attendee = get_attendee(aid)
+        except Lecture.DoesNotExist:
+            return Response(status = status.HTTP_404_NOT_FOUND)
+        else:
+            try:
+                attendee.lecture_set.get(id=lecture.id)
+            except Lecture.DoesNotExist:
+                attendee.lecture_set.add(lecture)
+                attendee.attend_count += 1
+                attendee.save()
+            serializer = LectureSerializer(lecture)
+            return Response(serializer.data)
+    else:
+        return Response(status = status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class AttendeeView(generics.UpdateAPIView):
 

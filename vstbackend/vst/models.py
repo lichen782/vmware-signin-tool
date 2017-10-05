@@ -3,6 +3,9 @@ from datetime import datetime
 
 # Create your models here.
 
+def auto_generate_qrcode():
+    import uuid
+    return "VMW_TRAINING_" + str(uuid.uuid1())
 
 class Attendee(models.Model):
     openid = models.CharField(max_length=50)
@@ -27,13 +30,14 @@ class Attendee(models.Model):
 
 
 class Lecture(models.Model):
+
     title = models.CharField(max_length=1024)
     create_date = models.DateTimeField('date created', auto_now_add=True, blank=True)
     scheduled_date = models.DateTimeField('when the lecture happen')
     teacher_name = models.CharField(max_length=50)
     room = models.CharField(max_length=100)
     attendees = models.ManyToManyField(Attendee, blank=True)
-    scan_code = models.CharField(max_length=1024)
+    scan_code = models.CharField(max_length=1024, unique=True, default=auto_generate_qrcode)
 
     class Meta:
         ordering = ["scheduled_date"]

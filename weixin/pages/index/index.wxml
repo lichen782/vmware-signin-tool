@@ -62,7 +62,4 @@
       </block>
     </swiper-item>
   </swiper>
-  <view class="usermotto">
-    <text class="user-motto">{{scanResult}}</text>
-  </view>
 </view>

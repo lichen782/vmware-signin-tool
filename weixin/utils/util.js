@@ -77,6 +77,7 @@ function updateUserInfo(userInfo, cb) {
   })
 
 }
+
 module.exports = {
   formatTime: formatTime,
   APP_SETTINGS: SETTINGS,
