@@ -4,24 +4,46 @@ var app = getApp()
 Page({
   data: {
     motto: '',
-    scanResult: ''
+    scanResult: '',
+    winWidth: 0,
+    winHeight: 0,
+    // tab切换  
+    currentTab: 0,
+    recentLectures: [],
+    userInfo: {
+      lectures: [],
+      attendCount: 0,
+      onTop: -1
+    }
   },
-  //事件处理函数
-  /*
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },*/
   onLoad: function () {
     console.log('onLoad')
     var that = this
+    /** 
+     * 获取系统信息 
+     */
+    wx.getSystemInfo({
+
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+
+    });
     
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
       that.setData({
         userInfo:userInfo
+      })
+    })
+
+    app.getRecentLectures(function(lectures) {
+      that.setData({
+        recentLectures: lectures
       })
     })
     
@@ -44,4 +66,28 @@ Page({
       url: '../lecture/lecture'
     })
   },
+  /** 
+     * 滑动切换tab 
+     */
+  bindChange: function (e) {
+
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+
+  },
+  /** 
+   * 点击tab切换 
+   */
+  swichNav: function (e) {
+
+    var that = this;
+
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  }
 })

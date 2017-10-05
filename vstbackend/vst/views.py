@@ -50,3 +50,11 @@ class AttendeeLectureListView(generics.ListAPIView):
         limit = self.request.query_params.get('limit', 3)
         return attendee.lecture_set.order_by('-scheduled_date')[:limit]
 
+class LectureListView(generics.ListAPIView):
+
+
+    serializer_class = LectureSerializer
+
+    def get_queryset(self):
+        limit = self.request.query_params.get('limit', 3)
+        return Lecture.objects.order_by('-scheduled_date')[:limit]

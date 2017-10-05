@@ -19,22 +19,46 @@
       <text class="arrow">></text>
     </view>
   </view>
-  <view class="grey-container">
-    <view class="my-recent">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+      <text>最近的讲座</text>
+    </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
       <text>我最近的签到</text>
     </view>
   </view>
-  <view class="lecture-container" bindtap="onLectureDetail">
-    <view class="lecture-upper">
-      <text class='lecture-title'>Presentation Skill</text>
-      <text class='lecture-date'>2017-09-26 14:30</text>
-      <text class='lecture-tutor'>Miss Xu</text>
-    </view>
-    <view class="lecture-stats">
-      <text>0人</text>
-      <image src="../images/people.png" class="people"/>
-    </view>
-  </view>
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <swiper-item>  
+      <block wx:for-items="{{recentLectures}}" wx:key="id">
+        <view class="lecture-container">
+          <view class="lecture-upper">
+            <text class='lecture-title'>{{item.title}}</text>
+            <text class='lecture-date'>{{item.scheduled_date}}</text>
+            <text class='lecture-tutor'>{{item.teacher_name}} @{{item.room}}</text>
+          </view>
+          <view class="lecture-stats">
+            <text>{{item.attendee_cnt}}人</text>
+            <image src="../images/people.png" class="people"/>
+          </view>
+        </view>
+      </block>  
+    </swiper-item>
+    <swiper-item>
+      <block wx:for-items="{{userInfo.lectures}}" wx:key="id">
+        <view class="lecture-container" bindtap="onLectureDetail">
+          <view class="lecture-upper">
+            <text class='lecture-title'>{{item.title}}</text>
+            <text class='lecture-date'>{{item.scheduled_date}}</text>
+            <text class='lecture-tutor'>{{item.teacher_name}}</text>
+          </view>
+          <view class="lecture-stats">
+            <text>{{item.attendee_cnt}}人</text>
+            <image src="../images/people.png" class="people"/>
+          </view>
+        </view>
+      </block>
+    </swiper-item>
+  </swiper>
   <view class="usermotto">
     <text class="user-motto">{{scanResult}}</text>
   </view>

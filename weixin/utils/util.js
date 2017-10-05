@@ -46,6 +46,7 @@ function onLogin(jsCode, cb/*used to update page data*/) {
 }
 
 function updateUserInfo(userInfo, cb) {
+  //Update userInfo for server
   wx.request({
     url: SETTINGS.VST_URL + '/vst/attendee/' + userInfo.id + '/',
     header: {
@@ -63,6 +64,18 @@ function updateUserInfo(userInfo, cb) {
       typeof cb == "function" && cb(userInfo)
     }
   })
+  //Fetch lecture info
+  wx.request({
+    url: SETTINGS.VST_URL + '/vst/attendee/' + userInfo.id + '/lecture/',
+    header: {
+      'content-type': 'application/json'
+    },
+    success: function (res) {
+      userInfo.lectures = res.data
+      typeof cb == "function" && cb(userInfo)
+    }
+  })
+
 }
 module.exports = {
   formatTime: formatTime,

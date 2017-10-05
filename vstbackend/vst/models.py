@@ -32,7 +32,7 @@ class Lecture(models.Model):
     scheduled_date = models.DateTimeField('when the lecture happen')
     teacher_name = models.CharField(max_length=50)
     room = models.CharField(max_length=100)
-    attendees = models.ManyToManyField(Attendee)
+    attendees = models.ManyToManyField(Attendee, blank=True)
     scan_code = models.CharField(max_length=1024)
 
     class Meta:

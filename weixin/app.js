@@ -27,6 +27,23 @@ App({
       })
     }
   },
+  getRecentLectures: function(cb) {
+    var that = this
+    if (this.globalData.recentLectures) {
+      typeof cb == "function" && cb(this.globalData.recentLectures)
+    } else {
+      wx.request({
+        url: utils.APP_SETTINGS.VST_URL + '/vst/lecture/',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          that.globalData.recentLectures = res.data
+          typeof cb == "function" && cb(that.globalData.recentLectures)
+        }
+      })
+    }
+  },
   getScanCode:function(cb) {
     wx.scanCode({
       success: (res) => {
