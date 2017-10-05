@@ -3,6 +3,9 @@
   <view class="grey-container">
     <button class="btn-scanner" bindtap="btn_primary">扫码签到</button>
   </view>
+  <loading hidden="{{loadingHidden}}">
+    正在拼命给主人加载...
+  </loading>
   <view class="userinfo">
     <view class="left">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -45,7 +48,7 @@
     </swiper-item>
     <swiper-item>
       <block wx:for-items="{{userInfo.lectures}}" wx:key="id">
-        <view class="lecture-container" bindtap="onLectureDetail">
+        <view class="lecture-container" bindtap="onLectureDetail" data-lecture="{{item}}">
           <view class="lecture-upper">
             <text class='lecture-title'>{{item.title}}</text>
             <text class='lecture-date'>{{item.scheduled_date}}</text>

@@ -14,7 +14,8 @@ Page({
       lectures: [],
       attendCount: 0,
       onTop: -1
-    }
+    },
+    loadingHidden: true,
   },
   onLoad: function () {
     console.log('onLoad')
@@ -33,11 +34,15 @@ Page({
 
     });
     
+    this.setData({
+      loadingHidden: false
+    })
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
       that.setData({
-        userInfo:userInfo
+        userInfo:userInfo,
+        loadingHidden: true
       })
     })
 
@@ -61,9 +66,10 @@ Page({
       url: '../ranking/ranking'
     })
   },
-  onLectureDetail: function () {
+  onLectureDetail: function (event) {
+    var lecture = event.currentTarget.dataset.lecture
     wx.navigateTo({
-      url: '../lecture/lecture'
+      url: '../lecture/lecture?lid=' + lecture.id + '&title=' + lecture.title + '&teacher_name=' + lecture.teacher_name + '&scheduled_date=' + lecture.scheduled_date + "&room=" + lecture.room
     })
   },
   /** 

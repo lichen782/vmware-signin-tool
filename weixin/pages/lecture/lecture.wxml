@@ -1,10 +1,10 @@
 <view class="container">
   <view class="review-container">
     <view class="lecture-detail">
-      <text class="teacher">Catherion Xu</text>
-      <text class="title">Presentation Skill</text>
-      <text class="date">2017-9-26 5:30 pm</text>
-      <text class="location">@FlyingDagger</text>
+      <text class="teacher">{{lectureInfo.teacher_name}}</text>
+      <text class="title">{{lectureInfo.title}}</text>
+      <text class="date">{{lectureInfo.scheduled_date}}</text>
+      <text class="location">@{{lectureInfo.room}}</text>
     </view>
     <view class="comment-container">
       <view class="score-title">
@@ -23,8 +23,11 @@
         </block>
       </view>
       <view class="comment-input">
-          <textarea maxlength='800' class="textarea" placeholder="请给我提一些意见吧" />
+        <textarea maxlength='800' class="textarea" placeholder="请给我提一些意见吧" value="{{comment}}" bindinput='commentInput'/>
       </view>
+       <loading hidden="{{submitLoadingHidden}}">
+          拼命提交中...
+      </loading>
     </view>
   </view>
 </view>
@@ -32,5 +35,4 @@
    <text bindtap="toHome" class="btn"style='background-color: #F7F7F7;'>返回</text>
    <text bindtap="startRating" class="btn" style='background-color: #28A5DC;color:white'>提交</text>
 </view>
-
 

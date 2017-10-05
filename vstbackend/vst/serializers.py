@@ -1,7 +1,7 @@
 __author__ = 'lich'
 
 from rest_framework import serializers
-from vst.models import Attendee, Lecture
+from vst.models import Attendee, Lecture, Review
 
 class AttendeeSerializer(serializers.ModelSerializer):
 
@@ -17,3 +17,11 @@ class LectureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lecture
         fields = ('id', 'title', 'scheduled_date', 'teacher_name', 'room', 'attendee_cnt')
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = Review
+        fields = ('id', 'score', 'comment')

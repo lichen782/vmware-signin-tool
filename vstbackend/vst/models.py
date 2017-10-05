@@ -49,10 +49,10 @@ class Lecture(models.Model):
 class Review(models.Model):
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     reviewer = models.ForeignKey(Attendee)
-    score = models.IntegerField(default=0)
-    comment = models.CharField(max_length=1024)
+    score = models.FloatField(default=0)
+    comment = models.CharField(max_length=1024, blank=True)
     create_date = models.DateTimeField('when the review is added', auto_now_add=True, blank=True)
     update_date = models.DateTimeField('when the review is updated', auto_now=True)
 
     def __str__(self):
-        return ':'.join([self.score, self.comment])
+        return self.lecture.title + " - Review by :" + self.reviewer.nickname + " with score: " + str(self.score) + " and comment: " + self.comment

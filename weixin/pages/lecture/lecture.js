@@ -1,5 +1,6 @@
 // pages/lecture.js
-var count = 0
+var utils = require('../../utils/util.js')
+var app = getApp()
 Page({
 
   /**
@@ -10,45 +11,84 @@ Page({
     normalSrc: '../images/no-star.png',
     selectedSrc: '../images/full-star.png',
     halfSrc: '../images/half-star.png',
-    key: 0, //score
+    key: 0, //score,
+    comment: "",
+    submitLoadingHidden: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    //console.log(options)
+    this.setData({
+      lectureInfo: {
+        id: options.lid,
+        room: options.room,
+        scheduled_date: options.scheduled_date,
+        teacher_name: options.teacher_name,
+        title: options.title
+      }
+    })
+    //Load comments, if any
+    var aid = app.globalData.userInfo.id
+    var lid = options.lid
+    var that = this
+    wx.request({
+      url: utils.APP_SETTINGS.VST_URL + '/vst/attendee/' + aid + "/lecture/" + lid + '/review/',
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          rid: res.data[0].id,
+          key: res.data[0].score,
+          comment: res.data[0].comment,
+        })
+      }
+    })
   },
 
   selectLeft: function (e) {
-    console.log('select left...')
+    //console.log('select left...')
     var key = e.currentTarget.dataset.key
     if (this.data.key == 0.5 && e.currentTarget.dataset.key == 0.5) {
       key = 0;
     }
-    count = key
     this.setData({
       key: key
     })
   },
 
   selectRight: function (e) {
-    console.log('select right...')
     var key = e.currentTarget.dataset.key
-    count = key
     this.setData({
       key: key
     })
   },
 
+  commentInput: function(e) {
+    this.setData({
+      comment: e.detail.value
+    }) 
+  }, 
+
   startRating: function(e) {
-    wx.showModal({
-      title: "分数",
-      content: "" + count,
-      success: function(res) {
-        if(res.confirm) {
-          console.log('用户点击确定')
-        }
+    var that = this
+    this.setData({
+        submitLoadingHidden: false
+      }
+    )
+    wx.request({
+      url: utils.APP_SETTINGS.VST_URL + '/vst/review/' + this.data.rid + '/',
+      method: 'PUT',
+      data: {
+        score: this.data.key,
+        comment: this.data.comment,
+      },
+      complete: function (res) {
+        that.setData({
+          submitLoadingHidden: true
+        })
+        wx.navigateBack()
       }
     })
   },
