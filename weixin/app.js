@@ -44,11 +44,23 @@ App({
       })
     }
   },
-  getScanCode:function(cb) {
+  getScanCode:function(cbObject) {
     wx.scanCode({
       success: (res) => {
-        console.log(res)
-        cb(res.result)
+        //console.log(res)
+        if (cbObject.success) {
+          cbObject.success(res.result)
+        }
+      },
+      fail: (res) => {
+        if (cbObject.fail) {
+          cbObject.fail(res)
+        }
+      },
+      complete: (res) => {
+        if (cbObject.complete) {
+          cbObject.complete(res)
+        }
       }
     })
   },

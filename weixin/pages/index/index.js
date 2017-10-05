@@ -40,34 +40,47 @@ Page({
     that.setData({
       loadingHidden: false
     })
-    app.getScanCode(function (res) {
-      //console.log(res)
-      wx.request({
-        url: utils.APP_SETTINGS.VST_URL + '/vst/onqrcode?code=' + res + '&aid=' + app.globalData.userInfo.id,
-        success: function(resLect) {
-          console.log(resLect)
-          if (resLect.statusCode != 200) {
+    app.getScanCode({
+      success: function(res) {
+        //console.log(res)
+        wx.request({
+          url: utils.APP_SETTINGS.VST_URL + '/vst/onqrcode?code=' + res + '&aid=' + app.globalData.userInfo.id,
+          success: function(resLect) {
+            console.log(resLect)
+            if (resLect.statusCode != 200) {
+              wx.showToast({
+                title: '粗错啦！',
+                duration: 2000
+              })
+            } else {
+              var lecture = resLect.data
+              that.goLecturePage(lecture)
+            }
+          },
+          fail: function() {
             wx.showToast({
               title: '粗错啦！',
               duration: 2000
             })
-          } else {
-            var lecture = resLect.data
-            that.goLecturePage(lecture)
+          },
+          complete: function() {
+            that.setData({
+              loadingHidden: true
+            })
           }
-        },
-        fail: function() {
-          wx.showToast({
-            title: '粗错啦！',
-            duration: 2000
-          })
-        },
-        complete: function() {
-          that.setData({
-            loadingHidden: true
-          })
-        }
-      })
+        })
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '马不对！',
+          duration: 2000
+        })
+      },
+      complete: function(res) {
+        that.setData({
+          loadingHidden: true
+        })
+      }
     })
   },
   goranking: function () {
