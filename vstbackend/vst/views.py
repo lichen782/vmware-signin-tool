@@ -26,6 +26,14 @@ def get_lecture(lid):
     else:
         return lecture
 
+def get_limit_param(request, default):
+    try:
+        limit = int(request.query_params.get('limit', default))
+    except:
+        limit = default
+
+    return limit
+
 # Create your views here.
 
 @csrf_exempt
@@ -76,6 +84,15 @@ class AttendeeView(generics.UpdateAPIView):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
 
+class AttendeeRankingListView(generics.ListAPIView):
+
+    queryset = Attendee.objects.order_by('-attend_count')
+    serializer_class = AttendeeSerializer
+
+    def get_queryset(self):
+        limit = get_limit_param(self.request, 10)
+        return Attendee.objects.order_by('-attend_count')[:limit]
+
 
 class AttendeeLectureListView(generics.ListAPIView):
     serializer_class = LectureSerializer
@@ -83,10 +100,7 @@ class AttendeeLectureListView(generics.ListAPIView):
     def get_queryset(self):
         aid = self.kwargs['aid']
         attendee = get_attendee(aid)
-        try:
-            limit = int(self.request.query_params.get('limit', 3))
-        except:
-            limit = 3
+        limit = get_limit_param(self.request, 3)
         return attendee.lecture_set.order_by('-scheduled_date')[:limit]
 
 class LectureListView(generics.ListAPIView):
@@ -94,10 +108,7 @@ class LectureListView(generics.ListAPIView):
     serializer_class = LectureSerializer
 
     def get_queryset(self):
-        try:
-            limit = int(self.request.query_params.get('limit', 3))
-        except:
-            limit = 3
+        limit = get_limit_param(self.request, 3)
         return Lecture.objects.order_by('-scheduled_date')[:limit]
 
 class ReviewListView(generics.ListAPIView):
@@ -123,8 +134,5 @@ class AnnounceListView(generics.ListAPIView):
     serializer_class = AnnounceSerializer
 
     def get_queryset(self):
-        try:
-            limit = int(self.request.query_params.get('limit', 1))
-        except:
-            limit = 1
+        limit = get_limit_param(self.request, 1)
         return Announce.objects.order_by('-create_date')[:limit]

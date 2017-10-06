@@ -37,12 +37,26 @@ Page({
     wx.request({
       url: utils.APP_SETTINGS.VST_URL + '/vst/attendee/' + aid + "/lecture/" + lid + '/review/',
       success: function(res) {
-        console.log(res.data)
-        that.setData({
-          rid: res.data[0].id,
-          key: res.data[0].score,
-          comment: res.data[0].comment,
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '粗错啦！',
+            duration: 2000
+          })
+          that.toHome()
+        } else {
+          that.setData({
+            rid: res.data[0].id,
+            key: res.data[0].score,
+            comment: res.data[0].comment,
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '粗错啦！',
+          duration: 2000
         })
+        that.toHome()
       }
     })
   },

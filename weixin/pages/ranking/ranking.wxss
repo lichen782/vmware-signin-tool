@@ -127,5 +127,6 @@
 
 .userinfo-order {
   margin: 0rpx 10rpx 0rpx 0rpx;
+  padding-right: 10rpx;
   font-size: 18px;
 }

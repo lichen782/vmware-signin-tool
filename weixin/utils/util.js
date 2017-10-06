@@ -36,8 +36,8 @@ function onLogin(jsCode, cb/*used to update page data*/) {
     },
     success: function (res) {
       var app = getApp()
-      console.log("my openid: " + res.data.openid) //获取openid
-      console.log("my id: " + res.data.id) //获取 user id
+      //console.log("my openid: " + res.data.openid) //获取openid
+      //console.log("my id: " + res.data.id) //获取 user id
       app.globalData.userInfo.id = res.data.id
       app.globalData.userInfo.openid = res.data.openid
       updateUserInfo(app.globalData.userInfo, cb)
@@ -60,7 +60,7 @@ function updateUserInfo(userInfo, cb) {
     success: function (res) { 
       userInfo.attendCount = res.data.attend_count
       userInfo.onTop = res.data.on_top
-      console.log(res.data)
+      //console.log(res.data)
       typeof cb == "function" && cb(userInfo)
     }
   })

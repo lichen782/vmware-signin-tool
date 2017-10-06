@@ -12,16 +12,26 @@ App({
       typeof cb == "function" && cb(this.globalData.userInfo)
     }else{
       //调用登录接口
+      console.log("Logging...")
       wx.login({
         success: function (loginRes) {
+          console.log("login done...")
           wx.getUserInfo({
             success: function (res) {
-              console.log(res)
+              //console.log(res)
               that.globalData.userInfo = res.userInfo
               that.globalData.userInfo.attendCount = 0
               typeof cb == "function" && cb(that.globalData.userInfo)
               utils.onLogin(loginRes.code, cb)
             }
+          })
+        },
+        fail: function(res) {
+          console.log("failed to login: " + res)
+          typeof cb == "function" && cb(that.globalData.userInfo)
+          wx.showToast({
+            title: '登录粗错啦！',
+            duration: 2000
           })
         }
       })
