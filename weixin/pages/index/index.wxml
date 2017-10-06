@@ -62,4 +62,11 @@
       </block>
     </swiper-item>
   </swiper>
+  <view class="bottom-an">
+    <view class="marquee_box">
+      <view class="marquee_text" style="{{marqueeOrientation}}:{{marqueeDistance}}px;font-size: {{marqueeSize}}px;">
+        ~$:> {{announce}}
+      </view>
+    </view>
+  </view>
 </view>

@@ -66,7 +66,7 @@ function updateUserInfo(userInfo, cb) {
   })
   //Fetch lecture info
   wx.request({
-    url: SETTINGS.VST_URL + '/vst/attendee/' + userInfo.id + '/lecture/',
+    url: SETTINGS.VST_URL + '/vst/attendee/' + userInfo.id + '/lecture/?limit=5',
     header: {
       'content-type': 'application/json'
     },

@@ -60,3 +60,10 @@ class Review(models.Model):
 
     def __str__(self):
         return self.lecture.title + " - Review by :" + self.reviewer.nickname + " with score: " + str(self.score) + " and comment: " + self.comment
+
+class Announce(models.Model):
+    content = models.CharField(max_length=1024)
+    create_date = models.DateTimeField('when the review is added', auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.content

@@ -6,8 +6,8 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from vst.apps import VstConfig
-from vst.models import Attendee, Lecture, Review
-from vst.serializers import AttendeeSerializer, LectureSerializer, ReviewSerializer
+from vst.models import Attendee, Lecture, Review, Announce
+from vst.serializers import AttendeeSerializer, LectureSerializer, ReviewSerializer, AnnounceSerializer
 
 
 def get_attendee(aid):
@@ -83,7 +83,10 @@ class AttendeeLectureListView(generics.ListAPIView):
     def get_queryset(self):
         aid = self.kwargs['aid']
         attendee = get_attendee(aid)
-        limit = self.request.query_params.get('limit', 3)
+        try:
+            limit = int(self.request.query_params.get('limit', 3))
+        except:
+            limit = 3
         return attendee.lecture_set.order_by('-scheduled_date')[:limit]
 
 class LectureListView(generics.ListAPIView):
@@ -91,7 +94,10 @@ class LectureListView(generics.ListAPIView):
     serializer_class = LectureSerializer
 
     def get_queryset(self):
-        limit = self.request.query_params.get('limit', 3)
+        try:
+            limit = int(self.request.query_params.get('limit', 3))
+        except:
+            limit = 3
         return Lecture.objects.order_by('-scheduled_date')[:limit]
 
 class ReviewListView(generics.ListAPIView):
@@ -111,3 +117,14 @@ class ReviewDetailView(generics.UpdateAPIView):
 
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
+
+class AnnounceListView(generics.ListAPIView):
+
+    serializer_class = AnnounceSerializer
+
+    def get_queryset(self):
+        try:
+            limit = int(self.request.query_params.get('limit', 1))
+        except:
+            limit = 1
+        return Announce.objects.order_by('-create_date')[:limit]

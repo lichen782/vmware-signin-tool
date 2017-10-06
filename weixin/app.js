@@ -33,13 +33,30 @@ App({
       typeof cb == "function" && cb(this.globalData.recentLectures)
     } else {
       wx.request({
-        url: utils.APP_SETTINGS.VST_URL + '/vst/lecture/',
+        url: utils.APP_SETTINGS.VST_URL + '/vst/lecture/?limit=5',
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
           that.globalData.recentLectures = res.data
           typeof cb == "function" && cb(that.globalData.recentLectures)
+        }
+      })
+    }
+  },
+  getLatestAnnounce: function(cb) {
+    var that = this
+    if (this.globalData.announce) {
+      typeof cb == "function" && cb(this.globalData.announce)
+    } else {
+      wx.request({
+        url: utils.APP_SETTINGS.VST_URL + '/vst/announce/?limit=1',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          that.globalData.announce = res.data[0].content
+          typeof cb == "function" && cb(that.globalData.announce)
         }
       })
     }

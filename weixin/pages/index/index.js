@@ -16,6 +16,12 @@ Page({
       onTop: -1
     },
     loadingHidden: true,
+    announce: '签到有大奖等你拿哦，and 本广告位长期招租',
+    marqueePace: 1,//滚动速度
+    marqueeDistance: 0,//初始滚动距离
+    marqueeSize: 14,
+    marqueeOrientation: 'left',//滚动方向
+    marqueeInterval: 13 // 时间间隔
   },
   onLoad: function () {
     console.log('onLoad')
@@ -127,6 +133,9 @@ Page({
     this.setData({
       loadingHidden: false
     })
+    app.globalData.userInfo = null
+    app.globalData.recentLectures = null
+    app.globalData.announce = null
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -141,5 +150,46 @@ Page({
         recentLectures: lectures
       })
     })
+
+    app.getLatestAnnounce(function (announce) {
+      that.setData({
+        announce: announce
+      })
+    })
   },
+
+  onPullDownRefresh: function() {
+    wx.stopPullDownRefresh()
+    this.updateAllData()
+  },
+
+  onShow: function() {
+    var vm = this;
+    var length = vm.data.announce.length * vm.data.marqueeSize;//文字长度
+    var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度
+    vm.setData({
+      marqueeLength: length,
+      windowWidth: windowWidth,
+    });
+    vm.runAnnounce();// 水平一行字滚动完了再按照原来的方向滚动
+
+  },
+
+  runAnnounce: function () {
+    var vm = this;
+    var interval = setInterval(function () {
+      if (-vm.data.marqueeDistance < vm.data.marqueeLength) {
+        vm.setData({
+          marqueeDistance: vm.data.marqueeDistance - vm.data.marqueePace,
+        });
+      } else {
+        clearInterval(interval);
+        vm.setData({
+          marqueeDistance: vm.data.windowWidth
+        });
+        vm.runAnnounce();
+      }
+    }, vm.data.marqueeInterval);
+  },
+
 })
