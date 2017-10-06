@@ -19,11 +19,12 @@ setup(
     author='lich',
     author_email='lich@vmware.com',
     install_requires=[
-	'django',
+	    'Django',
         'djangorestframework',
         'markdown',
         'django-filter',
         'mod_wsgi',
+        'requests',
     ],
     classifiers=[
         'Environment :: Web Environment',
