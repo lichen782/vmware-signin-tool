@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/lich/www/mod_wsgi-express-80/htdocs/static/'
+STATIC_ROOT = '/home/lich/www/mod_wsgi-express-80/htdocs/static/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
