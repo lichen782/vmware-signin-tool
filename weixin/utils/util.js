@@ -1,10 +1,10 @@
 
 var local = true
 var SETTINGS = { 
-  VST_URL: 'https://lich2kid.me:8000',
+  VST_URL: 'https://lich2kid.me',
 }
 if(local == true) {
-  SETTINGS.VST_URL = 'http://127.0.0.1:8000'
+  SETTINGS.VST_URL = 'http://127.0.0.1'
 }
 
 function formatTime(date) {
