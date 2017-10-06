@@ -39,6 +39,7 @@ Page({
       }
 
     });
+    this.setMarquee()
     this.updateAllData() 
   },
   btn_primary: function () {
@@ -163,7 +164,7 @@ Page({
     this.updateAllData()
   },
 
-  onShow: function() {
+  setMarquee: function() {
     var vm = this;
     var length = vm.data.announce.length * vm.data.marqueeSize;//文字长度
     var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度
@@ -172,7 +173,6 @@ Page({
       windowWidth: windowWidth,
     });
     vm.runAnnounce();// 水平一行字滚动完了再按照原来的方向滚动
-
   },
 
   runAnnounce: function () {
