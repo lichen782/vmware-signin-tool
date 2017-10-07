@@ -26,7 +26,7 @@
           </view>
         </view>
       </block>
-      <block wx:for-items="{{emptyList}}" wx:key="*this">
+      <block wx:for-items="{{emptyList}}" wx:key="on_top">
         <view class="rankinginfo" hover-class="navigator-hover">
           <view class="userinfo">
             <text class="userinfo-order">{{item.on_top}}</text>
