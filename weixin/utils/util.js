@@ -1,10 +1,6 @@
 
-var local = true
 var SETTINGS = { 
   VST_URL: 'https://lich2kid.me',
-}
-if(local == true) {
-  SETTINGS.VST_URL = 'http://10.221.160.139'
 }
 
 function formatTime(date) {

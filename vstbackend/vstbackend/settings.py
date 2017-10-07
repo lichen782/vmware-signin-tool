@@ -25,7 +25,7 @@ SECRET_KEY = '$8%h@oiv_j4pj$q$4=$&3y=5_l$gud@#4wz(j#bamykl4gg*cf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.221.160.139', 'lich2kid.me']
+ALLOWED_HOSTS = ['10.221.160.139', 'lich2kid.me', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/lich/www/mod_wsgi-express-80/htdocs/static/'
+STATIC_ROOT = '/home/lich/www/mod_wsgi-express-443/htdocs/static/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
