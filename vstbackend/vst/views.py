@@ -140,6 +140,6 @@ class AnnounceListView(generics.ListAPIView):
 
     def get_queryset(self):
         limit = get_limit_param(self.request, 1)
-        return Announce.objects.order_by('-creat_date')[:limit]
+        return Announce.objects.order_by('-create_date')[:limit]
 
 
