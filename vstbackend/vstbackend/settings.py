@@ -25,7 +25,7 @@ SECRET_KEY = '$8%h@oiv_j4pj$q$4=$&3y=5_l$gud@#4wz(j#bamykl4gg*cf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.221.160.139', 'lich2kid.me', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['10.221.160.139', 'lich2kid.me', 'localhost', '127.0.0.1', 'lich2kid.cn']
 
 
 # Application definition
