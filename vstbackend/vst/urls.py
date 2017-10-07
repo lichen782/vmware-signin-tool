@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     url(r'onlogin', views.onlogin, name='onlogin'),
     url(r'onqrcode', views.onQRCodeScaned, name='onQRCodeScaned'),
+    url(r'heartbeat', views.heartbeat, name='heartbeat'),
     url(r'^attendee/(?P<aid>[0-9]+)/lecture/(?P<lid>[0-9]+)/review/$', views.ReviewListView.as_view()),
     url(r'^attendee/(?P<aid>[0-9]+)/lecture/$', views.AttendeeLectureListView.as_view()),
     url(r'^attendee/(?P<pk>[0-9]+)/$', views.AttendeeView.as_view()),

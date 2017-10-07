@@ -79,6 +79,11 @@ def onQRCodeScaned(request):
     else:
         return Response(status = status.HTTP_405_METHOD_NOT_ALLOWED)
 
+@csrf_exempt
+@api_view(['GET'])
+def heartbeat(request):
+    return Response(status = status.HTTP_200_OK)
+
 class AttendeeView(generics.UpdateAPIView):
 
     queryset = Attendee.objects.all()
@@ -135,4 +140,6 @@ class AnnounceListView(generics.ListAPIView):
 
     def get_queryset(self):
         limit = get_limit_param(self.request, 1)
-        return Announce.objects.order_by('-create_date')[:limit]
+        return Announce.objects.order_by('-creatdate')[:limit]
+
+
