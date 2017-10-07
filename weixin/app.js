@@ -65,8 +65,10 @@ App({
           'content-type': 'application/json'
         },
         success: function (res) {
-          that.globalData.announce = res.data[0].content
-          typeof cb == "function" && cb(that.globalData.announce)
+          if (res.data.length > 0) {
+            that.globalData.announce = res.data[0].content
+            typeof cb == "function" && cb(that.globalData.announce)
+          }
         }
       })
     }

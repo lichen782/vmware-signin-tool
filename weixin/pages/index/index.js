@@ -16,7 +16,7 @@ Page({
       onTop: -1
     },
     loadingHidden: true,
-    announce: '签到有大奖等你拿哦，and 本广告位长期招租',
+    announce: '签到有大奖等你拿哟^_^',
     marqueePace: 1,//滚动速度
     marqueeDistance: 0,//初始滚动距离
     marqueeSize: 14,
