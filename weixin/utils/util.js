@@ -1,6 +1,6 @@
 
 var SETTINGS = { 
-  VST_URL: 'https://lich2kid.me',
+  VST_URL: 'https://lich2kid.cn',
 }
 
 function formatTime(date) {
