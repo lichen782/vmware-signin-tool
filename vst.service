@@ -1,0 +1,13 @@
+# Copy this to /lib/systemd/system/vst.service
+# Run systemctl enable vst.service
+[Unit]
+Description=apache2 with mod_wsgi supporting vst service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/lich/www/mod_wsgi-express-443/apachectl start
+ExecStop=/home/lich/www/mod_wsgi-express-443/apachectl stop
+
+[Install]
+WantedBy=multi-user.target
