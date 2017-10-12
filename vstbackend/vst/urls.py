@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^attendee/(?P<aid>[0-9]+)/lecture/$', views.AttendeeLectureListView.as_view()),
     url(r'^attendee/(?P<pk>[0-9]+)/$', views.AttendeeView.as_view()),
     url(r'^lecture/$', views.LectureListView.as_view()),
+    url(r'^lecture/(?P<lid>[0-9]+)/review/$', views.LectureReviewListView.as_view()),
     url(r'^review/(?P<pk>[0-9]+)/$', views.ReviewDetailView.as_view()),
     url(r'^announce/$', views.AnnounceListView.as_view()),
     url(r'^ranking/$', views.AttendeeRankingListView.as_view()),

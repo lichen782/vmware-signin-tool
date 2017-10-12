@@ -1,6 +1,26 @@
 // pages/lecture.js
 var utils = require('../../utils/util.js')
 var app = getApp()
+var doommList = [];
+var doommCnt = 0;//用做唯一的wx: key
+var page = undefined;
+class Doomm {
+  constructor(text, top, time, color) {
+    this.text = text + doommCnt;
+    this.top = top;
+    this.time = time;
+    this.color = color;
+    this.display = true;
+    let that = this;
+    this.id = doommCnt++;
+    setTimeout(function () {
+      doommList.splice(doommList.indexOf(that), 1);//动画完成，从列表中移除这项
+      page.setData({
+        doommData: doommList
+      })
+    }, this.time * 1000)//定时器动画完成后执行。
+  }
+}
 Page({
 
   /**
@@ -14,12 +34,41 @@ Page({
     key: 0, //score,
     comment: "",
     submitLoadingHidden: true,
+    doommData: [],
+  },
+
+  loadReviews: function (lid) {
+    doommCnt = 0;
+    doommList = []
+    this.setData({
+      doommData: []
+    })
+    var that = this
+    wx.request({
+      url: utils.APP_SETTINGS.VST_URL + '/vst/lecture/' + lid + '/review/',
+      success: function(res) {
+         if (res.statusCode == 200) {
+           var reviews = res.data
+           reviews.forEach(function (review) {
+             doommList.push(new Doomm(review.comment,
+               Math.ceil(Math.random() * 100),
+               Math.ceil(Math.random() * 10),
+               utils.getRandomColor()));
+           })
+           that.setData({
+             doommData: doommList
+           })
+         }
+         
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    page = this;
     //console.log(options)
     this.setData({
       lectureInfo: {
@@ -30,6 +79,8 @@ Page({
         title: options.title
       }
     })
+    //Load all comments, if could
+    this.loadReviews(options.lid)
     //Load comments, if any
     var aid = app.globalData.userInfo.id
     var lid = options.lid
@@ -102,7 +153,9 @@ Page({
         that.setData({
           submitLoadingHidden: true
         })
-        wx.navigateBack()
+        wx.navigateTo({
+          url: '/pages/index/index',
+        })
       }
     })
   },

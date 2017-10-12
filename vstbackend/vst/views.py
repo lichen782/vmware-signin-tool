@@ -98,7 +98,6 @@ class AttendeeRankingListView(generics.ListAPIView):
         limit = get_limit_param(self.request, 10)
         return Attendee.objects.order_by('-attend_count')[:limit]
 
-
 class AttendeeLectureListView(generics.ListAPIView):
     serializer_class = LectureSerializer
 
@@ -115,6 +114,16 @@ class LectureListView(generics.ListAPIView):
     def get_queryset(self):
         limit = get_limit_param(self.request, 3)
         return Lecture.objects.order_by('-scheduled_date')[:limit]
+
+class LectureReviewListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        limit = get_limit_param(self.request, 30)
+        lid = self.kwargs['lid']
+        lecture = get_lecture(lid)
+        return lecture.review_set.order_by('-update_date')[:limit]
+
 
 class ReviewListView(generics.ListAPIView):
 
