@@ -6,7 +6,7 @@ var doommCnt = 0;//用做唯一的wx: key
 var page = undefined;
 class Doomm {
   constructor(text, top, time, color) {
-    this.text = text + doommCnt;
+    this.text = text;
     this.top = top;
     this.time = time;
     this.color = color;
